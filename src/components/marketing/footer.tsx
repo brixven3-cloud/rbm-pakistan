@@ -22,7 +22,7 @@ export function MarketingFooter() {
 
         {/* Tagline */}
         <p className="mb-6 max-w-sm text-sm leading-body text-white/50">
-          Pakistan's real estate platform — every dealer gets their own website, listings,
+          Pakistan&apos;s real estate platform — every dealer gets their own website, listings,
           and leads in one place.
         </p>
 

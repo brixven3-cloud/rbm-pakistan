@@ -4,22 +4,29 @@
 
 /* CSS custom properties — mirrors Tailwind tokens */
 :root {
-  --black:              #0E1116;
-  --black-soft:         #1A1F26;
-  --gold:               #C99A3C;
-  --gold-dark:          #A87E2C;
-  --gold-soft:          #F5EAD2;
+  /* Charcoal + copper identity */
+  --header-grad:        linear-gradient(160deg, #2B2F36 0%, #1A1D23 55%, #15171C 100%);
+  --charcoal:           #15171C;
+  --charcoal-soft:      #1A1D23;
+  --copper:             #D9764A;
+  --copper-dark:        #C95F32;
+  --copper-grad:        linear-gradient(160deg, #E08A5C, #C95F32);
+  --copper-soft:        #FBF1EB;
+  --copper-border:      #EBD3C4;
+  /* Light content zone */
   --bg:                 #FAFAF8;
   --surface:            #FFFFFF;
   --border:             #E7E7E2;
   --text:               #16201A;
   --text-muted:         #6B726E;
   --text-on-dark:       #FFFFFF;
-  --text-on-dark-muted: #8A9099;
-  --success:            #1D9E75;
-  --danger:             #E24B4A;
-  --warning:            #BA7517;
-  --font-sans:          'Plus Jakarta Sans', system-ui, sans-serif;
+  --text-on-dark-muted: #9AA0A6;
+  /* States */
+  --success:  #1D9E75;
+  --danger:   #E24B4A;
+  --warning:  #BA7517;
+  /* Font */
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 @layer base {
@@ -46,9 +53,9 @@
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
-  ::-webkit-scrollbar           { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track     { background: #F5F5F3; }
-  ::-webkit-scrollbar-thumb     { background: #D6D3D0; border-radius: 999px; }
+  ::-webkit-scrollbar             { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track       { background: #F5F5F3; }
+  ::-webkit-scrollbar-thumb       { background: #D6D3D0; border-radius: 999px; }
   ::-webkit-scrollbar-thumb:hover { background: #A8A29E; }
 }
 
@@ -59,9 +66,9 @@
   .section-padding    { @apply py-14 md:py-20 lg:py-28; }
   .section-padding-sm { @apply py-8 md:py-12; }
 
-  /* Gold gradient text for headings on light backgrounds */
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #C99A3C 0%, #A87E2C 100%);
+  /* Copper gradient text — for premium headings */
+  .text-gradient-copper {
+    background: linear-gradient(135deg, #D9764A 0%, #C95F32 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -25,8 +25,9 @@ export function TrustStrip() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {ITEMS.map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex flex-col items-center gap-3 text-center">
-              <div className="flex h-11 w-11 items-center justify-center rounded-card bg-black">
-                <Icon className="h-5 w-5 text-gold" aria-hidden />
+              {/* Copper-soft tile — consistent with light-first model */}
+              <div className="flex h-11 w-11 items-center justify-center rounded-card bg-copper-soft">
+                <Icon className="h-5 w-5 text-copper" aria-hidden />
               </div>
               <div>
                 <div className="text-sm font-semibold text-ink">{title}</div>

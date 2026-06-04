@@ -10,11 +10,11 @@ const LINKS = [
 
 export function MarketingFooter() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-charcoal">
       <div className="container-page py-10">
         {/* Logo */}
         <div className="mb-5 flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-btn bg-gold text-black shrink-0">
+          <div className="flex h-8 w-8 items-center justify-center rounded-btn bg-copper text-white shrink-0">
             <span className="text-sm font-bold leading-none select-none">R</span>
           </div>
           <span className="font-semibold text-white">RBM Pakistan</span>
@@ -32,7 +32,7 @@ export function MarketingFooter() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-white/40 transition-colors hover:text-gold"
+              className="text-sm text-white/40 transition-colors hover:text-copper"
             >
               {l.label}
             </Link>
@@ -46,7 +46,7 @@ export function MarketingFooter() {
             Powered by{' '}
             <a
               href="https://brixven.com"
-              className="text-white/40 transition-colors hover:text-gold"
+              className="text-white/40 transition-colors hover:text-copper"
               target="_blank"
               rel="noopener noreferrer"
             >

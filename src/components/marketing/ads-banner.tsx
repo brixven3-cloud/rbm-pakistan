@@ -39,7 +39,7 @@ export function AdsBanner() {
 
   useEffect(() => {
     if (paused) return
-    timerRef.current = setInterval(next, 3800)
+    timerRef.current = setInterval(next, 5000)
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [paused, next])
 
@@ -51,7 +51,7 @@ export function AdsBanner() {
       role="region"
       aria-label="Promotional banners"
     >
-      {/* Slides — translate by 100% × current index */}
+      {/* Slides */}
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
@@ -60,34 +60,35 @@ export function AdsBanner() {
           <a
             key={b.id}
             href={b.href}
-            className="relative flex h-28 w-full shrink-0 flex-col justify-center overflow-hidden rounded-card bg-gradient-to-r from-black to-black-soft px-5 sm:h-32"
+            className="relative flex h-28 w-full shrink-0 flex-col justify-center overflow-hidden rounded-card px-5 sm:h-32"
+            style={{ background: 'linear-gradient(160deg, #2B2F36 0%, #1A1D23 55%, #15171C 100%)' }}
           >
-            {/* Subtle gold left border accent */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" aria-hidden />
+            {/* Copper left accent bar */}
+            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-copper rounded-l-card" aria-hidden />
             <p className="text-sm font-semibold text-white">{b.title}</p>
-            <p className="mt-0.5 text-xs text-dark-muted">{b.subtitle}</p>
-            <span className="mt-2 text-xs font-semibold text-gold">{b.cta} →</span>
+            <p className="mt-0.5 text-xs text-white/50">{b.subtitle}</p>
+            <span className="mt-2 text-xs font-semibold text-copper">{b.cta} →</span>
           </a>
         ))}
       </div>
 
-      {/* Prev/Next arrows */}
+      {/* Prev / Next */}
       <button
         onClick={() => { prev(); setPaused(true) }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
+        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
         aria-label="Previous banner"
       >
         <ChevronLeft className="h-4 w-4" />
       </button>
       <button
         onClick={() => { next(); setPaused(true) }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
         aria-label="Next banner"
       >
         <ChevronRight className="h-4 w-4" />
       </button>
 
-      {/* Dot indicators */}
+      {/* Copper dot indicators */}
       <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5" role="tablist">
         {BANNERS.map((_, i) => (
           <button
@@ -97,7 +98,7 @@ export function AdsBanner() {
             onClick={() => { setCurrent(i); setPaused(true) }}
             className={cn(
               'h-1.5 rounded-full transition-all duration-300',
-              i === current ? 'w-4 bg-gold' : 'w-1.5 bg-white/30'
+              i === current ? 'w-4 bg-copper' : 'w-1.5 bg-white/30'
             )}
             aria-label={`Slide ${i + 1} of ${BANNERS.length}`}
           />

@@ -7,7 +7,6 @@ const PLACEHOLDER = Array.from({ length: 5 }, (_, i) => ({
   title: i % 2 === 0 ? '10 Marla House for Sale' : '5 Marla Plot Available',
   price: i % 2 === 0 ? 'Rs. 2.5 Crore' : 'Rs. 85 Lakh',
   location: i % 3 === 0 ? 'DHA Phase 5, Lahore' : i % 3 === 1 ? 'Bahria Town, Islamabad' : 'DHA Phase 6, Karachi',
-  type: i % 2 === 0 ? 'House' : 'Plot',
   featured: i === 0 || i === 3,
   verified: i === 1,
 }))
@@ -17,23 +16,23 @@ export function FeaturedListings() {
     <section className="mt-6">
       <div className="container-page mb-3 flex items-center justify-between">
         <h2 className="text-base font-semibold text-ink">Featured listings</h2>
-        <button className="text-sm font-medium text-gold transition-colors hover:text-gold-dark">
+        <button className="text-sm font-medium text-copper transition-colors hover:text-copper-dark">
           View all
         </button>
       </div>
 
-      {/* Edge-to-edge horizontal scroll on mobile */}
+      {/* Edge-to-edge horizontal scroll */}
       <div className="-mx-4 sm:-mx-6 lg:-mx-8">
         <div className="flex gap-3 overflow-x-auto px-4 pb-3 sm:px-6 lg:px-8 scrollbar-hide">
           {PLACEHOLDER.map((card) => (
             <article
               key={card.id}
-              className="w-56 shrink-0 rounded-card border border-hairline bg-surface shadow-card transition-shadow hover:shadow-elevated sm:w-64"
+              className="w-56 shrink-0 rounded-card border border-hairline bg-surface shadow-card transition-all duration-150 hover:-translate-y-0.5 hover:shadow-elevated active:scale-[0.98] sm:w-64"
             >
-              {/* Image placeholder — dark gradient, property images sit on light bg in real cards */}
-              <div className="relative h-36 overflow-hidden rounded-t-card bg-gradient-to-br from-black-soft to-black">
+              {/* Image placeholder — subtle dark gradient (real images will be bright on white bg) */}
+              <div className="relative h-36 overflow-hidden rounded-t-card bg-gradient-to-br from-charcoal-muted to-charcoal">
                 <div className="absolute left-2 top-2 flex gap-1.5">
-                  {card.featured && <Badge variant="gold" size="sm">⭐ Featured</Badge>}
+                  {card.featured && <Badge variant="copper" size="sm">⭐ Featured</Badge>}
                   {card.verified && <Badge variant="brand" size="sm">Verified</Badge>}
                 </div>
               </div>
@@ -42,8 +41,8 @@ export function FeaturedListings() {
                 <div className="line-clamp-2 text-sm font-semibold leading-snug text-ink">
                   {card.title}
                 </div>
-                {/* Price in gold — key visual highlight */}
-                <div className="text-base font-bold text-gold">{card.price}</div>
+                {/* Price in copper — key visual accent */}
+                <div className="text-base font-bold text-copper">{card.price}</div>
                 <div className="flex items-center gap-1 text-xs text-ink-muted">
                   <MapPin className="h-3 w-3 shrink-0" aria-hidden />
                   <span className="truncate">{card.location}</span>

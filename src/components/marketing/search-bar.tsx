@@ -3,8 +3,8 @@
 import { Search, ChevronDown } from 'lucide-react'
 
 /**
- * Standalone white search pill — used on light-zone pages (property list, city view).
- * The hero version is inlined in hero.tsx alongside the AI pill.
+ * Standalone white search pill — used on light-zone pages (property list, city views).
+ * The hero version in hero.tsx uses the same visual pattern with a motion entrance.
  */
 export function SearchBar() {
   return (
@@ -13,12 +13,12 @@ export function SearchBar() {
       <input
         type="search"
         placeholder="Search properties"
-        className="flex-1 bg-transparent px-3 text-sm text-ink placeholder:text-ink-faint outline-none focus:ring-0"
+        className="flex-1 bg-transparent px-3 text-sm text-ink placeholder:text-ink-faint outline-none"
         aria-label="Search properties"
       />
       <button className="flex items-center gap-1 border-l border-hairline px-3 text-xs font-medium text-ink-muted whitespace-nowrap transition-colors hover:text-ink">
         City
-        <ChevronDown className="h-3 w-3" aria-hidden />
+        <ChevronDown className="h-3 w-3 text-copper" aria-hidden />
       </button>
     </div>
   )

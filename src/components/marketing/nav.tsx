@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { slideDown } from '@/lib/motion'
 
 const NAV_LINKS = [
-  { label: 'Pricing', href: '/pricing' },
+  { label: 'Pricing',      href: '/pricing' },
   { label: 'How it works', href: '/how-it-works' },
 ]
 
@@ -15,7 +15,8 @@ export function MarketingNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 bg-black">
+    // Use the darkest charcoal so it matches the gradient end and looks seamless
+    <header className="sticky top-0 z-40 bg-charcoal">
       <div className="container-page flex h-14 items-center">
         {/* Left: hamburger */}
         <button
@@ -30,12 +31,16 @@ export function MarketingNav() {
         {/* Center: logo + tagline */}
         <div className="flex flex-1 flex-col items-center">
           <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
-            <div className="flex h-7 w-7 items-center justify-center rounded-btn bg-gold text-black shrink-0">
+            {/* Copper logo mark — house-shaped "R" */}
+            <div className="flex h-7 w-7 items-center justify-center rounded-btn bg-copper text-white shrink-0">
               <span className="text-xs font-bold leading-none select-none">R</span>
             </div>
             <span className="font-semibold text-white text-sm">RBM Pakistan</span>
           </Link>
-          <span className="text-2xs text-dark-muted tracking-wider">har property, ek jagah</span>
+          {/* Tagline — copper accent */}
+          <span className="text-2xs font-medium text-copper tracking-wider">
+            har property, ek jagah
+          </span>
         </div>
 
         {/* Right: search icon */}
@@ -47,11 +52,11 @@ export function MarketingNav() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile nav drawer */}
       <AnimatePresence>
         {open && (
           <motion.nav
-            className="border-t border-white/10 bg-black-soft"
+            className="border-t border-white/10 bg-charcoal-soft"
             variants={slideDown}
             initial="hidden"
             animate="visible"
@@ -79,7 +84,7 @@ export function MarketingNav() {
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="block rounded-btn bg-gold px-3 py-2.5 text-center text-sm font-semibold text-black transition-colors hover:bg-gold-dark"
+                  className="block rounded-btn bg-copper px-3 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-copper-dark"
                   onClick={() => setOpen(false)}
                 >
                   Get started free

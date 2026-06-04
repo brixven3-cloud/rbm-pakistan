@@ -7,24 +7,24 @@ const buttonVariants = cva(
   [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none',
     'transition-colors duration-150',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',
   ].join(' '),
   {
     variants: {
       variant: {
         // Light-zone buttons
-        default:       'rounded-btn bg-black text-white hover:bg-black-soft active:bg-black',
-        secondary:     'rounded-btn bg-gold-soft text-gold-dark hover:bg-gold-100',
-        outline:       'rounded-btn border border-hairline bg-transparent text-ink hover:bg-surface-soft',
-        ghost:         'rounded-btn bg-transparent text-ink hover:bg-surface-soft',
-        destructive:   'rounded-btn bg-danger text-white hover:bg-red-700',
-        link:          'bg-transparent text-gold underline-offset-4 hover:underline h-auto p-0',
-        muted:         'rounded-btn bg-surface-soft text-ink-muted hover:bg-hairline hover:text-ink',
-        // Dark-zone buttons (hero, nav drawer, footer)
-        gold:          'rounded-btn bg-gold text-black hover:bg-gold-dark active:bg-gold-dark shadow-gold-sm',
-        'outline-gold':'rounded-btn border border-gold text-gold bg-transparent hover:bg-gold-soft',
-        'ghost-dark':  'rounded-btn text-white/80 hover:text-white hover:bg-white/10',
+        default:         'rounded-btn bg-charcoal text-white hover:bg-charcoal-soft active:bg-charcoal',
+        copper:          'rounded-btn bg-copper text-white hover:bg-copper-dark active:bg-copper-dark shadow-copper-sm',
+        secondary:       'rounded-btn bg-copper-soft text-copper-dark hover:bg-copper-border',
+        outline:         'rounded-btn border border-hairline bg-transparent text-ink hover:bg-surface-soft',
+        'outline-copper':'rounded-btn border border-copper text-copper bg-transparent hover:bg-copper-soft',
+        ghost:           'rounded-btn bg-transparent text-ink hover:bg-surface-soft',
+        destructive:     'rounded-btn bg-danger text-white hover:bg-red-700',
+        link:            'bg-transparent text-copper underline-offset-4 hover:underline h-auto p-0',
+        muted:           'rounded-btn bg-surface-soft text-ink-muted hover:bg-hairline hover:text-ink',
+        // Dark-zone buttons (header band, footer)
+        'ghost-dark':    'rounded-btn text-white/80 hover:text-white hover:bg-white/10',
       },
       size: {
         xs:        'h-7 px-2.5 text-xs',

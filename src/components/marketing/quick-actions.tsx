@@ -15,10 +15,11 @@ export function QuickActions() {
           <Link
             key={label}
             href={href}
-            className="flex flex-col items-center gap-2 rounded-card border border-hairline bg-surface p-4 shadow-card transition-all hover:shadow-elevated"
+            // Copper-soft tile — no dark boxes in the content zone
+            className="flex flex-col items-center gap-2 rounded-card border border-copper-border bg-copper-soft p-4 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-elevated active:scale-[0.98]"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-input bg-black">
-              <Icon className="h-5 w-5 text-gold" aria-hidden />
+            <div className="flex h-10 w-10 items-center justify-center rounded-input bg-white shadow-card">
+              <Icon className="h-5 w-5 text-copper" aria-hidden />
             </div>
             <span className="text-center text-2xs font-medium leading-tight text-ink-muted">
               {label}

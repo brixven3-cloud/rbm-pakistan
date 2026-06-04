@@ -7,10 +7,10 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: 'bg-surface-soft text-ink-muted ring-hairline',
-        // Black badge — for "Verified", important labels on light bg
-        brand:   'bg-black text-white ring-black/10',
-        // Gold — ONLY for "Featured" / "Hot Sale" / "Verified" premium badges
-        gold:    'bg-gold-soft text-gold-dark ring-gold/30',
+        // Charcoal badge — "Verified", important labels
+        brand:   'bg-charcoal text-white ring-charcoal/10',
+        // Copper — ONLY for "Featured" / "Hot Sale" premium badges
+        copper:  'bg-copper-soft text-copper-dark ring-copper/25',
         success: 'bg-success-soft text-success ring-green-200',
         warning: 'bg-warning-soft text-warning ring-amber-200',
         danger:  'bg-danger-soft text-danger ring-red-200',
@@ -34,8 +34,8 @@ interface BadgeProps
 }
 
 const dotColors: Record<string, string> = {
-  brand:   'bg-white/80',
-  gold:    'bg-gold',
+  brand:   'bg-white/70',
+  copper:  'bg-copper',
   success: 'bg-success',
   warning: 'bg-warning',
   danger:  'bg-danger',

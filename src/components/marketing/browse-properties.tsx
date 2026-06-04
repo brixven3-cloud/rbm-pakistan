@@ -20,7 +20,7 @@ export function BrowseProperties() {
 
   return (
     <div className="rounded-card border border-hairline bg-surface shadow-card">
-      {/* Tab row */}
+      {/* Tabs */}
       <div className="flex border-b border-hairline px-2" role="tablist" aria-label="Property type">
         {TABS.map((tab) => (
           <button
@@ -31,7 +31,7 @@ export function BrowseProperties() {
             className={cn(
               'px-4 pb-3 pt-3 text-sm font-medium transition-colors',
               activeTab === tab
-                ? 'border-b-2 border-ink text-ink'
+                ? 'border-b-2 border-charcoal text-ink'
                 : 'border-b-2 border-transparent text-ink-muted hover:text-ink'
             )}
           >
@@ -47,10 +47,10 @@ export function BrowseProperties() {
             key={chip}
             onClick={() => setActiveChip(activeChip === chip ? null : chip)}
             className={cn(
-              'rounded-pill px-3 py-1.5 text-xs font-medium transition-all',
+              'rounded-pill px-3 py-1.5 text-xs font-medium transition-all duration-150',
               activeChip === chip
-                ? 'bg-gold-soft text-gold-dark ring-1 ring-gold/40'
-                : 'bg-surface-soft text-ink-muted hover:bg-hairline hover:text-ink'
+                ? 'bg-copper-soft text-copper-dark ring-1 ring-copper/35'
+                : 'bg-surface-soft text-ink-muted hover:bg-copper-soft hover:text-copper-dark'
             )}
             aria-pressed={activeChip === chip}
           >
@@ -63,7 +63,7 @@ export function BrowseProperties() {
       <div className="border-t border-hairline px-4 py-3">
         <Link
           href={`/properties?type=${activeTab.toLowerCase()}${activeChip ? `&q=${encodeURIComponent(activeChip)}` : ''}`}
-          className="flex items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-ink-muted"
+          className="flex items-center gap-1.5 text-sm font-medium text-copper transition-colors hover:text-copper-dark"
         >
           Browse {activeTab.toLowerCase()}
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />

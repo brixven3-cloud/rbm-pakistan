@@ -2,63 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS custom properties — mirrors Tailwind tokens */
+/* ── CSS custom properties ─────────────────────────────────────────────── */
 :root {
-  /* Charcoal + copper identity */
-  --header-grad:        linear-gradient(160deg, #2B2F36 0%, #1A1D23 55%, #15171C 100%);
-  --charcoal:           #15171C;
-  --charcoal-soft:      #1A1D23;
-  --copper:             #D9764A;
-  --copper-dark:        #C95F32;
-  --copper-grad:        linear-gradient(160deg, #E08A5C, #C95F32);
-  --copper-soft:        #FBF1EB;
-  --copper-border:      #EBD3C4;
-  /* Light content zone */
-  --bg:                 #FAFAF8;
-  --surface:            #FFFFFF;
-  --border:             #E7E7E2;
-  --text:               #16201A;
-  --text-muted:         #6B726E;
-  --text-on-dark:       #FFFFFF;
-  --text-on-dark-muted: #9AA0A6;
-  /* States */
-  --success:  #1D9E75;
-  --danger:   #E24B4A;
-  --warning:  #BA7517;
-  /* Font */
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --canvas:        #08090B;
+  --bg-grad:       radial-gradient(130% 70% at 50% -5%, #232024 0%, #15151A 42%, #0C0D0F 100%);
+  --surface:       #19181B;
+  --surface-2:     #1B1A1E;
+  --surface-3:     #100F13;
+  --border-dark:   #2E2A29;
+  --copper:        #DD7A4E;
+  --copper-red:    #C0392B;
+  --accent-grad:   linear-gradient(160deg, #DD7A4E, #C0392B);
+  --glow:          rgba(221,122,78,0.16);
+  --text:          #FFFFFF;
+  --text-muted:    #9AA0A6;
+  --text-copper:   #DD7A4E;
+  --success:       #1D9E75;
+  --danger:        #E24B4A;
+  --warning:       #D9A23A;
+  --font-sans:     'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
+/* ── Base layer ─────────────────────────────────────────────────────────── */
 @layer base {
-  *, *::before, *::after { border-color: #E7E7E2; }
+  *, *::before, *::after {
+    border-color: #2E2A29;
+  }
 
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    background-color: #08090B;
   }
 
   body {
-    @apply bg-page text-ink antialiased;
+    @apply bg-canvas text-ink antialiased;
     line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-ink;
+    @apply text-white;
     line-height: 1.25;
     font-weight: 600;
   }
 
-  /* iOS safe-area for bottom nav */
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
+  /* Dark scrollbar */
   ::-webkit-scrollbar             { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track       { background: #F5F5F3; }
-  ::-webkit-scrollbar-thumb       { background: #D6D3D0; border-radius: 999px; }
-  ::-webkit-scrollbar-thumb:hover { background: #A8A29E; }
+  ::-webkit-scrollbar-track       { background: #08090B; }
+  ::-webkit-scrollbar-thumb       { background: #2E2A29; border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3E3A39; }
 }
 
+/* ── Component utilities ─────────────────────────────────────────────────── */
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
@@ -66,19 +65,45 @@
   .section-padding    { @apply py-14 md:py-20 lg:py-28; }
   .section-padding-sm { @apply py-8 md:py-12; }
 
-  /* Copper gradient text — for premium headings */
+  /* Copper gradient text */
   .text-gradient-copper {
-    background: linear-gradient(135deg, #D9764A 0%, #C95F32 100%);
+    background: linear-gradient(135deg, #DD7A4E 0%, #C0392B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 }
 
+/* ── Utilities ───────────────────────────────────────────────────────────── */
 @layer utilities {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* ── Card float animation ── */
+  /* Gentle bob 3-4px with subtle perspective tilt — staggered so cards don't sync */
+  @keyframes cardFloat {
+    0%, 100% { transform: perspective(1200px) rotateX(1.5deg) translateY(0);    }
+    50%       { transform: perspective(1200px) rotateX(1.5deg) translateY(-4px); }
+  }
+  @keyframes cardFloat2 {
+    0%, 100% { transform: perspective(1200px) rotateX(1.5deg) translateY(0);    }
+    50%       { transform: perspective(1200px) rotateX(1.5deg) translateY(-3px); }
+  }
+
+  .card-float   { animation: cardFloat  5.0s ease-in-out infinite; }
+  .card-float-2 { animation: cardFloat  5.3s ease-in-out infinite 0.8s; }
+  .card-float-3 { animation: cardFloat2 4.8s ease-in-out infinite 1.6s; }
+  .card-float-4 { animation: cardFloat  5.5s ease-in-out infinite 2.4s; }
+  .card-float-5 { animation: cardFloat2 4.7s ease-in-out infinite 3.0s; }
+
+  /* Disable float for reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .card-float, .card-float-2, .card-float-3, .card-float-4, .card-float-5 {
+      animation: none;
+      transform: perspective(1200px) rotateX(1.5deg);
+    }
+  }
 }

@@ -7,24 +7,23 @@ const buttonVariants = cva(
   [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none',
     'transition-colors duration-150',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2',
-    'disabled:pointer-events-none disabled:opacity-50',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-canvas',
+    'disabled:pointer-events-none disabled:opacity-40',
   ].join(' '),
   {
     variants: {
       variant: {
-        // Light-zone buttons
-        default:         'rounded-btn bg-charcoal text-white hover:bg-charcoal-soft active:bg-charcoal',
-        copper:          'rounded-btn bg-copper text-white hover:bg-copper-dark active:bg-copper-dark shadow-copper-sm',
-        secondary:       'rounded-btn bg-copper-soft text-copper-dark hover:bg-copper-border',
-        outline:         'rounded-btn border border-hairline bg-transparent text-ink hover:bg-surface-soft',
-        'outline-copper':'rounded-btn border border-copper text-copper bg-transparent hover:bg-copper-soft',
-        ghost:           'rounded-btn bg-transparent text-ink hover:bg-surface-soft',
-        destructive:     'rounded-btn bg-danger text-white hover:bg-red-700',
-        link:            'bg-transparent text-copper underline-offset-4 hover:underline h-auto p-0',
-        muted:           'rounded-btn bg-surface-soft text-ink-muted hover:bg-hairline hover:text-ink',
-        // Dark-zone buttons (header band, footer)
-        'ghost-dark':    'rounded-btn text-white/80 hover:text-white hover:bg-white/10',
+        // Primary: copper-red gradient
+        accent:      'rounded-btn bg-accent-grad text-white shadow-copper-sm hover:shadow-copper-md',
+        // Subtle dark surface button
+        default:     'rounded-btn bg-surface-2 text-white border border-hairline hover:bg-surface-soft',
+        // Secondary: copper tint
+        secondary:   'rounded-btn bg-copper/15 text-copper border border-copper/30 hover:bg-copper/20',
+        outline:     'rounded-btn border border-hairline text-ink-muted hover:text-white hover:bg-surface-soft',
+        ghost:       'rounded-btn text-ink-muted hover:text-white hover:bg-surface-2',
+        destructive: 'rounded-btn bg-danger text-white hover:bg-red-700',
+        link:        'text-copper underline-offset-4 hover:underline h-auto p-0',
+        muted:       'rounded-btn bg-surface text-ink-muted hover:bg-surface-soft hover:text-white',
       },
       size: {
         xs:        'h-7 px-2.5 text-xs',
@@ -36,7 +35,7 @@ const buttonVariants = cva(
         'icon-sm': 'h-8 w-8 rounded-btn p-0 shrink-0',
       },
     },
-    defaultVariants: { variant: 'default', size: 'md' },
+    defaultVariants: { variant: 'accent', size: 'md' },
   }
 )
 

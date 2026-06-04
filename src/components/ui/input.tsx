@@ -42,7 +42,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               'w-full rounded-input border bg-surface px-3 py-2.5 text-sm text-ink',
               'placeholder:text-ink-faint transition-colors duration-150',
-              'focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary',
+              'focus:outline-none focus:ring-2 focus:ring-copper focus:border-copper',
               'disabled:cursor-not-allowed disabled:bg-surface-soft disabled:text-ink-muted',
               error
                 ? 'border-danger focus:ring-danger focus:border-danger'

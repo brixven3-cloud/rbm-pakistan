@@ -11,34 +11,43 @@ const PLACEHOLDER = Array.from({ length: 5 }, (_, i) => ({
   verified: i === 1,
 }))
 
+// Staggered float delays
+const FLOAT_CLASSES = ['card-float', 'card-float-2', 'card-float-3', 'card-float-4', 'card-float-5']
+
 export function FeaturedListings() {
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       <div className="container-page mb-3 flex items-center justify-between">
-        <h2 className="text-base font-semibold text-ink">Featured listings</h2>
-        <button className="text-sm font-medium text-copper transition-colors hover:text-copper-dark">
+        <h2 className="text-base font-semibold text-white">Featured listings</h2>
+        <button className="text-sm font-medium text-copper transition-colors hover:text-copper-muted">
           View all
         </button>
       </div>
 
       {/* Edge-to-edge horizontal scroll */}
       <div className="-mx-4 sm:-mx-6 lg:-mx-8">
-        <div className="flex gap-3 overflow-x-auto px-4 pb-3 sm:px-6 lg:px-8 scrollbar-hide">
-          {PLACEHOLDER.map((card) => (
+        <div className="flex gap-3 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8 scrollbar-hide">
+          {PLACEHOLDER.map((card, i) => (
             <article
               key={card.id}
-              className="w-56 shrink-0 rounded-card border border-hairline bg-surface shadow-card transition-all duration-150 hover:-translate-y-0.5 hover:shadow-elevated active:scale-[0.98] sm:w-64"
+              className={`w-56 shrink-0 overflow-hidden rounded-card border border-hairline sm:w-64 ${FLOAT_CLASSES[i % 5]}`}
+              style={{ boxShadow: '0 10px 26px rgba(0,0,0,0.45)' }}
             >
-              {/* Image placeholder — subtle dark gradient (real images will be bright on white bg) */}
-              <div className="relative h-36 overflow-hidden rounded-t-card bg-gradient-to-br from-charcoal-muted to-charcoal">
+              {/* ── PHOTO AREA — kept BRIGHT (natural colors, no dark overlay) ── */}
+              {/* Real property photos go here as bright, natural images */}
+              <div className="relative h-40 overflow-hidden bg-white">
+                {/* Placeholder — simulates a bright, sunny property photo */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-white to-slate-50" />
+                {/* Badges over photo */}
                 <div className="absolute left-2 top-2 flex gap-1.5">
                   {card.featured && <Badge variant="copper" size="sm">⭐ Featured</Badge>}
-                  {card.verified && <Badge variant="brand" size="sm">Verified</Badge>}
+                  {card.verified && <Badge variant="brand" size="sm">✓ Verified</Badge>}
                 </div>
               </div>
 
-              <div className="space-y-1.5 p-3">
-                <div className="line-clamp-2 text-sm font-semibold leading-snug text-ink">
+              {/* ── CARD DETAILS — on dark surface below photo ── */}
+              <div className="bg-surface p-3 space-y-1.5">
+                <div className="line-clamp-2 text-sm font-semibold leading-snug text-white">
                   {card.title}
                 </div>
                 {/* Price in copper — key visual accent */}

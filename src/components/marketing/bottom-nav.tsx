@@ -20,16 +20,16 @@ export function BottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-hairline md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-canvas border-t border-hairline md:hidden"
       aria-label="Mobile navigation"
     >
-      {/* AI FAB — raised above nav bar, centered */}
+      {/* AI FAB — raised above the nav bar, centered */}
       <div className="absolute left-1/2 -translate-x-1/2 -top-6 flex flex-col items-center gap-0.5">
         <AiFab />
-        <span className="text-2xs font-medium text-charcoal">Ask AI</span>
+        <span className="text-2xs font-medium text-copper-muted">Ask AI</span>
       </div>
 
-      {/* Nav items row */}
+      {/* Nav items */}
       <div className="flex h-16 items-center pb-safe">
         {/* Left: Home, Cities */}
         <div className="flex flex-1 items-center justify-around">
@@ -43,12 +43,10 @@ export function BottomNav() {
                 aria-current={active ? 'page' : undefined}
               >
                 <Icon
-                  className={cn('h-5 w-5 transition-colors', active ? 'text-copper' : 'text-ink-faint')}
+                  className={cn('h-5 w-5 transition-colors', active ? 'text-copper' : 'text-ink-muted')}
                   aria-hidden
                 />
-                <span
-                  className={cn('text-2xs font-medium transition-colors', active ? 'text-copper' : 'text-ink-faint')}
-                >
+                <span className={cn('text-2xs font-medium transition-colors', active ? 'text-copper' : 'text-ink-muted')}>
                   {label}
                 </span>
               </Link>
@@ -56,7 +54,7 @@ export function BottomNav() {
           })}
         </div>
 
-        {/* Center spacer so items don't crowd behind the FAB */}
+        {/* Center spacer for FAB */}
         <div className="w-16 shrink-0" aria-hidden />
 
         {/* Right: Saved, Profile */}
@@ -71,12 +69,10 @@ export function BottomNav() {
                 aria-current={active ? 'page' : undefined}
               >
                 <Icon
-                  className={cn('h-5 w-5 transition-colors', active ? 'text-copper' : 'text-ink-faint')}
+                  className={cn('h-5 w-5 transition-colors', active ? 'text-copper' : 'text-ink-muted')}
                   aria-hidden
                 />
-                <span
-                  className={cn('text-2xs font-medium transition-colors', active ? 'text-copper' : 'text-ink-faint')}
-                >
+                <span className={cn('text-2xs font-medium transition-colors', active ? 'text-copper' : 'text-ink-muted')}>
                   {label}
                 </span>
               </Link>

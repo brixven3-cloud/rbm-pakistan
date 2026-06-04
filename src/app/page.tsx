@@ -3,81 +3,73 @@ import { HeroSection } from '@/components/marketing/hero'
 import { MakeWebsiteBtn } from '@/components/marketing/make-website-btn'
 import { AdsBanner } from '@/components/marketing/ads-banner'
 import { AllPakistanBtn } from '@/components/marketing/all-pakistan-btn'
-import { BrowseProperties } from '@/components/marketing/browse-properties'
 import { CityGrid } from '@/components/marketing/city-grid'
 import { FeaturedListings } from '@/components/marketing/featured-listings'
-import { TrustStrip } from '@/components/marketing/trust-strip'
 import { MarketingFooter } from '@/components/marketing/footer'
 import { BottomNav } from '@/components/marketing/bottom-nav'
 import { AnimatedSection } from '@/components/marketing/animated-section'
 
 export default function HomePage() {
   return (
-    // pb-16 clears the fixed bottom nav on mobile
-    <div className="min-h-screen bg-page pb-16 md:pb-0">
+    // Outermost canvas — solid #08090B as fallback
+    <div className="min-h-screen bg-canvas">
 
-      {/* ════════════ CHARCOAL HEADER BAND ════════════ */}
-      {/* Sticky nav — kept outside overflow:hidden so it stays truly sticky */}
-      <MarketingNav />
-
-      {/* Hero zone: charcoal gradient with elliptical curve at the bottom edge */}
+      {/* ── Ambient copper glow at top — fixed, subtle, never neon ── */}
       <div
-        className="bg-header-grad overflow-hidden pb-10"
+        className="pointer-events-none fixed inset-x-0 top-0 z-0 h-96"
         style={{
-          borderBottomLeftRadius: '50% 60px',
-          borderBottomRightRadius: '50% 60px',
+          background:
+            'radial-gradient(60% 100% at 50% 0%, rgba(221,122,78,0.16) 0%, transparent 100%)',
         }}
-      >
-        <HeroSection />
-      </div>
+        aria-hidden
+      />
 
-      {/* ════════════ LIGHT CONTENT ZONE ════════════ */}
-      {/* Light-first: copper-soft tinted tiles only — no dark boxes below the curve */}
-      <main className="bg-page">
-        <div className="container-page space-y-4 pt-5 pb-6">
+      {/* ── Page content on warm radial gradient ── */}
+      <div className="relative z-10 min-h-screen bg-page-grad pb-20 md:pb-0">
 
-          {/* 1. Dealer acquisition CTA — most prominent, top of zone */}
-          <AnimatedSection delay={0}>
+        {/* Sticky nav */}
+        <MarketingNav />
+
+        {/* All sections on single dark canvas — no light zone */}
+        <div className="container-page space-y-4 pt-3 pb-6">
+
+          {/* 1. Search bar */}
+          <HeroSection />
+
+          {/* 2. Make Website CTA (dealer entry, copper card) */}
+          <AnimatedSection delay={0.04}>
             <MakeWebsiteBtn />
           </AnimatedSection>
 
-          {/* 2. Ads banner (admin-managed in M6; placeholder content now) */}
-          <AnimatedSection delay={0.05}>
+          {/* 3. Ads banner slider (admin-managed in M6) */}
+          <AnimatedSection delay={0.08}>
             <AdsBanner />
           </AnimatedSection>
 
-          {/* 3. All Pakistan market entry */}
-          <AnimatedSection delay={0.08}>
-            <AllPakistanBtn />
-          </AnimatedSection>
-
-          {/* 4. Browse by city */}
+          {/* 4. All Pakistan market */}
           <AnimatedSection delay={0.11}>
-            <CityGrid />
-          </AnimatedSection>
-
-          {/* 5. Browse by type + quick filter chips */}
-          <AnimatedSection delay={0.14}>
-            <BrowseProperties />
+            <AllPakistanBtn />
           </AnimatedSection>
 
         </div>
 
-        {/* 6. Featured listings — edge-to-edge horizontal scroll */}
-        <AnimatedSection delay={0.16}>
+        {/* 5. Featured listings — edge-to-edge horizontal scroll, bright photos */}
+        <AnimatedSection delay={0.14}>
           <FeaturedListings />
         </AnimatedSection>
 
-        {/* 7. Trust strip */}
-        <AnimatedSection delay={0}>
-          <TrustStrip />
-        </AnimatedSection>
+        {/* 6. Browse by city */}
+        <div className="container-page pt-6 pb-4">
+          <AnimatedSection delay={0.17}>
+            <CityGrid />
+          </AnimatedSection>
+        </div>
 
-        {/* 8. Footer — charcoal, Powered by Brixven.com · 2026 */}
+        {/* 7. Footer — darkest surface, Brixven.com · 2026 */}
         <MarketingFooter />
-      </main>
+      </div>
 
-      {/* Fixed bottom nav: light/white, copper active, center AI FAB */}
+      {/* Fixed bottom nav: dark canvas bg, copper active, center AI FAB */}
       <BottomNav />
     </div>
   )

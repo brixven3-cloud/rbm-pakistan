@@ -9,46 +9,40 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ── Charcoal (header / footer) ─────────────────────────────────
-        charcoal: {
-          DEFAULT: '#15171C',
-          soft:    '#1A1D23',
-          muted:   '#2B2F36',
-        },
-        // ── Copper: THE single accent ─────────────────────────────────
-        // logo, icons, CTAs, active states, AI bot, "Featured" badges
-        copper: {
-          DEFAULT: '#D9764A',
-          dark:    '#C95F32',
-          soft:    '#FBF1EB',
-          border:  '#EBD3C4',
-        },
-        // ── Muted text on dark backgrounds ───────────────────────────
-        dark: {
-          muted: '#9AA0A6',
-        },
-        // ── Light content zone ────────────────────────────────────────
-        ink: {
-          DEFAULT: '#16201A',
-          muted:   '#6B726E',
-          faint:   '#9CA3A0',
-        },
-        page:    '#FAFAF8',
+        // ── Canvas & surfaces (dark theme) ────────────────────────────
+        canvas:  '#08090B',   // Outermost body background
         surface: {
-          DEFAULT: '#FFFFFF',
-          soft:    '#F5F5F3',
+          DEFAULT: '#19181B', // Cards, tiles
+          2:       '#1B1A1E', // Inputs, search bar
+          3:       '#100F13', // Footer, bottom nav (darkest)
+          soft:    '#1D1C20', // Hover states on dark
         },
-        hairline: '#E7E7E2',
+        // Keep 'page' as alias for canvas for backward compatibility
+        page: '#08090B',
+        // ── Accent: Copper → Copper-Red ───────────────────────────────
+        copper: {
+          DEFAULT: '#DD7A4E', // THE accent — icons, prices, CTAs, active states
+          red:     '#C0392B', // Deep red gradient end / urgent accents
+          muted:   '#CE9279', // Soft accent text
+        },
+        // ── Text ──────────────────────────────────────────────────────
+        ink: {
+          DEFAULT: '#FFFFFF', // Primary text (white on dark)
+          muted:   '#9AA0A6', // Secondary text / captions
+          faint:   '#5C6370', // Placeholder / disabled
+        },
+        // ── Borders (dark hairline) ───────────────────────────────────
+        hairline: '#2E2A29',  // Default card/section border
         // ── States ───────────────────────────────────────────────────
-        success: { DEFAULT: '#1D9E75', soft: '#E8F8F3' },
-        danger:  { DEFAULT: '#E24B4A', soft: '#FEECEC' },
-        warning: { DEFAULT: '#BA7517', soft: '#FEF3E0' },
+        success: { DEFAULT: '#1D9E75', soft: '#0E2E23' },
+        danger:  { DEFAULT: '#E24B4A', soft: '#2E1212' },
+        warning: { DEFAULT: '#D9A23A', soft: '#2E2010' },
       },
       backgroundImage: {
-        // Charcoal gradient — ONLY the top header band
-        'header-grad': 'linear-gradient(160deg, #2B2F36 0%, #1A1D23 55%, #15171C 100%)',
-        // Copper gradient — AI FAB button fill
-        'copper-grad': 'linear-gradient(160deg, #E08A5C, #C95F32)',
+        // Warm radial glow from the top (page background)
+        'page-grad':   'radial-gradient(130% 70% at 50% -5%, #232024 0%, #15151A 42%, #0C0D0F 100%)',
+        // Primary CTA gradient — buttons, FAB, icon tiles
+        'accent-grad': 'linear-gradient(160deg, #DD7A4E, #C0392B)',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'sans-serif'],
@@ -61,25 +55,23 @@ const config: Config = {
         heading: '1.25',
       },
       borderRadius: {
-        card:  '12px',
+        card:  '16px',  // 14-16px per spec
         btn:   '8px',
         input: '8px',
         pill:  '9999px',
       },
       boxShadow: {
-        card:       '0 1px 3px 0 rgba(21,23,28,0.07), 0 1px 2px -1px rgba(21,23,28,0.05)',
-        elevated:   '0 4px 12px -2px rgba(21,23,28,0.10), 0 2px 4px -2px rgba(21,23,28,0.06)',
-        sticky:     '0 1px 0 0 #E7E7E2',
-        float:      '0 8px 24px -4px rgba(21,23,28,0.20)',
-        hero:       '0 4px 24px rgba(0,0,0,0.30)',
-        'copper-sm':'0 2px 8px -1px rgba(217,118,74,0.35)',
-        'copper-md':'0 4px 16px -2px rgba(217,118,74,0.28)',
+        card:          '0 10px 26px rgba(0,0,0,0.45)',
+        elevated:      '0 14px 36px rgba(0,0,0,0.55)',
+        'search-glow': '0 0 0 1px rgba(221,122,78,0.30), 0 0 18px rgba(221,122,78,0.12)',
+        'copper-glow': '0 0 0 1px rgba(221,122,78,0.40), 0 0 24px rgba(221,122,78,0.20)',
+        'copper-sm':   '0 2px 8px -1px rgba(221,122,78,0.35)',
+        'copper-md':   '0 4px 16px -2px rgba(221,122,78,0.28)',
       },
       animation: {
         'fade-in':  'fadeIn 0.2s ease-out',
         'slide-up': 'slideUp 0.28s cubic-bezier(0.4,0,0.2,1)',
         shimmer:    'shimmer 2s linear infinite',
-        float:      'floatBob 2.5s ease-in-out infinite',
       },
       keyframes: {
         fadeIn:   { from: { opacity: '0' }, to: { opacity: '1' } },
@@ -90,10 +82,6 @@ const config: Config = {
         shimmer: {
           '0%':   { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
-        },
-        floatBob: {
-          '0%,100%': { transform: 'translateY(0px)' },
-          '50%':     { transform: 'translateY(-5px)' },
         },
       },
     },

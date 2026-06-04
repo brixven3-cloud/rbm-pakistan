@@ -6,15 +6,15 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-surface-soft text-ink-muted ring-hairline',
-        // Charcoal badge — "Verified", important labels
-        brand:   'bg-charcoal text-white ring-charcoal/10',
-        // Copper — ONLY for "Featured" / "Hot Sale" premium badges
-        copper:  'bg-copper-soft text-copper-dark ring-copper/25',
-        success: 'bg-success-soft text-success ring-green-200',
-        warning: 'bg-warning-soft text-warning ring-amber-200',
-        danger:  'bg-danger-soft text-danger ring-red-200',
-        info:    'bg-blue-50 text-blue-700 ring-blue-200',
+        default: 'bg-surface-2 text-ink-muted ring-hairline',
+        // Copper badge — Featured, Hot Sale, premium labels
+        copper:  'bg-copper/15 text-copper ring-copper/30',
+        // Brand badge — Verified (uses gradient)
+        brand:   'bg-accent-grad text-white ring-transparent',
+        success: 'bg-success/15 text-success ring-success/30',
+        warning: 'bg-warning/15 text-warning ring-warning/30',
+        danger:  'bg-danger/15 text-danger ring-danger/30',
+        info:    'bg-blue-500/15 text-blue-400 ring-blue-500/30',
         outline: 'bg-transparent text-ink-muted ring-hairline',
       },
       size: {
@@ -34,12 +34,12 @@ interface BadgeProps
 }
 
 const dotColors: Record<string, string> = {
-  brand:   'bg-white/70',
+  brand:   'bg-white/80',
   copper:  'bg-copper',
   success: 'bg-success',
   warning: 'bg-warning',
   danger:  'bg-danger',
-  info:    'bg-blue-500',
+  info:    'bg-blue-400',
   default: 'bg-ink-faint',
   outline: 'bg-ink-faint',
 }

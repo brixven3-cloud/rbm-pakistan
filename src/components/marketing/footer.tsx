@@ -10,18 +10,21 @@ const LINKS = [
 
 export function MarketingFooter() {
   return (
-    <footer className="bg-charcoal">
+    <footer className="bg-surface-3 border-t border-hairline">
       <div className="container-page py-10">
         {/* Logo */}
         <div className="mb-5 flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-btn bg-copper text-white shrink-0">
+          <div
+            className="flex h-8 w-8 items-center justify-center rounded-btn text-white shrink-0"
+            style={{ background: 'linear-gradient(160deg, #DD7A4E, #C0392B)' }}
+          >
             <span className="text-sm font-bold leading-none select-none">R</span>
           </div>
           <span className="font-semibold text-white">RBM Pakistan</span>
         </div>
 
         {/* Tagline */}
-        <p className="mb-6 max-w-sm text-sm leading-body text-white/50">
+        <p className="mb-6 max-w-sm text-sm leading-body text-ink-muted">
           Pakistan&apos;s real estate platform — every dealer gets their own website, listings,
           and leads in one place.
         </p>
@@ -32,7 +35,7 @@ export function MarketingFooter() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-white/40 transition-colors hover:text-copper"
+              className="text-sm text-ink-muted transition-colors hover:text-copper"
             >
               {l.label}
             </Link>
@@ -40,13 +43,13 @@ export function MarketingFooter() {
         </nav>
 
         {/* Bottom row */}
-        <div className="flex flex-col gap-1.5 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/25">© 2026 RBM Pakistan. All rights reserved.</p>
-          <p className="text-xs text-white/25">
+        <div className="flex flex-col gap-1.5 border-t border-hairline pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-ink-faint">© 2026 RBM Pakistan. All rights reserved.</p>
+          <p className="text-xs text-ink-faint">
             Powered by{' '}
             <a
               href="https://brixven.com"
-              className="text-white/40 transition-colors hover:text-copper"
+              className="text-ink-muted transition-colors hover:text-copper"
               target="_blank"
               rel="noopener noreferrer"
             >

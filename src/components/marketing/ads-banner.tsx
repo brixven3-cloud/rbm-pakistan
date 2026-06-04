@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-// Placeholder banners — replaced with real data from ads_banners table in M6 admin
 const BANNERS = [
   {
     id: 1,
@@ -45,11 +44,12 @@ export function AdsBanner() {
 
   return (
     <div
-      className="relative overflow-hidden rounded-card"
+      className="relative overflow-hidden rounded-card border border-hairline"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       role="region"
       aria-label="Promotional banners"
+      style={{ boxShadow: '0 10px 26px rgba(0,0,0,0.45)' }}
     >
       {/* Slides */}
       <div
@@ -61,12 +61,19 @@ export function AdsBanner() {
             key={b.id}
             href={b.href}
             className="relative flex h-28 w-full shrink-0 flex-col justify-center overflow-hidden rounded-card px-5 sm:h-32"
-            style={{ background: 'linear-gradient(160deg, #2B2F36 0%, #1A1D23 55%, #15171C 100%)' }}
+            style={{
+              background:
+                'radial-gradient(130% 70% at 50% -5%, #232024 0%, #15151A 42%, #0C0D0F 100%)',
+            }}
           >
-            {/* Copper left accent bar */}
-            <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-copper rounded-l-card" aria-hidden />
+            {/* Copper accent bar on left */}
+            <div
+              className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-card"
+              style={{ background: 'linear-gradient(180deg, #DD7A4E, #C0392B)' }}
+              aria-hidden
+            />
             <p className="text-sm font-semibold text-white">{b.title}</p>
-            <p className="mt-0.5 text-xs text-white/50">{b.subtitle}</p>
+            <p className="mt-0.5 text-xs text-ink-muted">{b.subtitle}</p>
             <span className="mt-2 text-xs font-semibold text-copper">{b.cta} →</span>
           </a>
         ))}
@@ -75,14 +82,14 @@ export function AdsBanner() {
       {/* Prev / Next */}
       <button
         onClick={() => { prev(); setPaused(true) }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
+        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-surface/70 p-1 text-ink-muted backdrop-blur-sm transition-colors hover:text-white"
         aria-label="Previous banner"
       >
         <ChevronLeft className="h-4 w-4" />
       </button>
       <button
         onClick={() => { next(); setPaused(true) }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-1 text-white/70 backdrop-blur-sm transition-colors hover:text-white"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-surface/70 p-1 text-ink-muted backdrop-blur-sm transition-colors hover:text-white"
         aria-label="Next banner"
       >
         <ChevronRight className="h-4 w-4" />
@@ -98,7 +105,7 @@ export function AdsBanner() {
             onClick={() => { setCurrent(i); setPaused(true) }}
             className={cn(
               'h-1.5 rounded-full transition-all duration-300',
-              i === current ? 'w-4 bg-copper' : 'w-1.5 bg-white/30'
+              i === current ? 'w-4 bg-copper' : 'w-1.5 bg-ink-faint'
             )}
             aria-label={`Slide ${i + 1} of ${BANNERS.length}`}
           />

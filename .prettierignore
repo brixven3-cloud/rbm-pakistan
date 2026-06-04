@@ -1,0 +1,7 @@
+.next
+node_modules
+out
+dist
+package-lock.json
+*.min.js
+src/types/database.types.ts

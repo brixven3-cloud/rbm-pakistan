@@ -6,6 +6,40 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      ads_banners: {
+        Row: {
+          id: string
+          title: string
+          image_url: string
+          link_url: string | null
+          is_active: boolean
+          sort_order: number
+          starts_at: string | null
+          ends_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          image_url: string
+          link_url?: string | null
+          is_active?: boolean
+          sort_order?: number
+          starts_at?: string | null
+          ends_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          title?: string
+          image_url?: string
+          link_url?: string | null
+          is_active?: boolean
+          sort_order?: number
+          starts_at?: string | null
+          ends_at?: string | null
+        }
+        Relationships: []
+      }
       announcements: {
         Row: {
           id: string
@@ -130,6 +164,106 @@ export type Database = {
             foreignKeyName: 'dealers_user_id_fkey'
             columns: ['user_id']
             referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      hot_sale_cards: {
+        Row: {
+          id: string
+          dealer_id: string
+          type: Database['public']['Enums']['hot_sale_card_type']
+          title: string
+          description: string | null
+          city: string
+          society: string | null
+          asking_price: number
+          images: Json
+          scope: Database['public']['Enums']['hot_sale_card_scope']
+          target_cities: string[] | null
+          duration_hours: number
+          expires_at: string
+          status: Database['public']['Enums']['hot_sale_card_status']
+          accepted_offer_id: string | null
+          published_at: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          dealer_id: string
+          type: Database['public']['Enums']['hot_sale_card_type']
+          title: string
+          description?: string | null
+          city: string
+          society?: string | null
+          asking_price: number
+          images?: Json
+          scope?: Database['public']['Enums']['hot_sale_card_scope']
+          target_cities?: string[] | null
+          duration_hours: number
+          expires_at: string
+          status?: Database['public']['Enums']['hot_sale_card_status']
+          accepted_offer_id?: string | null
+          published_at?: string
+          created_at?: string
+        }
+        Update: {
+          type?: Database['public']['Enums']['hot_sale_card_type']
+          title?: string
+          description?: string | null
+          city?: string
+          society?: string | null
+          asking_price?: number
+          images?: Json
+          scope?: Database['public']['Enums']['hot_sale_card_scope']
+          target_cities?: string[] | null
+          duration_hours?: number
+          expires_at?: string
+          status?: Database['public']['Enums']['hot_sale_card_status']
+          accepted_offer_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'hot_sale_cards_dealer_id_fkey'
+            columns: ['dealer_id']
+            referencedRelation: 'dealers'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      hot_sale_offers: {
+        Row: {
+          id: string
+          card_id: string
+          buyer_name: string
+          buyer_phone: string
+          offer_amount: number
+          message: string | null
+          status: Database['public']['Enums']['hot_sale_offer_status']
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          card_id: string
+          buyer_name: string
+          buyer_phone: string
+          offer_amount: number
+          message?: string | null
+          status?: Database['public']['Enums']['hot_sale_offer_status']
+          created_at?: string
+        }
+        Update: {
+          buyer_name?: string
+          buyer_phone?: string
+          offer_amount?: number
+          message?: string | null
+          status?: Database['public']['Enums']['hot_sale_offer_status']
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'hot_sale_offers_card_id_fkey'
+            columns: ['card_id']
+            referencedRelation: 'hot_sale_cards'
             referencedColumns: ['id']
           },
         ]
@@ -556,6 +690,11 @@ export type Database = {
     }
     Enums: {
       area_unit: 'marla' | 'kanal' | 'sqft' | 'sqyd'
+      // Hot Sale enums (Milestone 7)
+      hot_sale_card_type:   'plot' | 'house' | 'file' | 'flat' | 'commercial'
+      hot_sale_card_scope:  'all_pakistan' | 'cities'
+      hot_sale_card_status: 'active' | 'accepted' | 'expired' | 'cancelled'
+      hot_sale_offer_status:'pending' | 'accepted' | 'declined' | 'closed'
       inquiry_source: 'site' | 'ai_assistant'
       inquiry_status: 'new' | 'contacted' | 'closed'
       listing_purpose: 'sale' | 'rent'

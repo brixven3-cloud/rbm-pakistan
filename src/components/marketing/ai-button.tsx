@@ -3,27 +3,26 @@
 import { Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-export function AiButton() {
+/**
+ * Gold AI assistant pill — floats above the search bar in the hero section.
+ * Gently slides up and down (2.5s loop) so it stays noticeable without distracting.
+ * Phase 1: opens search / "coming soon" state.
+ * Phase 2: full conversational AI across all dealer listings.
+ */
+export function AiPill() {
   return (
-    // bottom-20 on mobile clears the bottom nav (64px) + 16px gap
-    // md:bottom-6 on desktop (no bottom nav)
-    <div className="fixed bottom-20 right-4 z-40 md:bottom-6 md:right-6">
-      <motion.button
-        className="flex items-center gap-2 rounded-pill bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-primary-md"
-        animate={{
-          boxShadow: [
-            '0 0 0 0 rgba(15, 157, 122, 0.45)',
-            '0 0 0 8px rgba(15, 157, 122, 0)',
-            '0 0 0 0 rgba(15, 157, 122, 0)',
-          ],
-        }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut', repeatDelay: 0.5 }}
-        aria-label="Open AI smart property search"
-        title="Ask AI — smart property search (coming soon)"
-      >
-        <Sparkles className="h-4 w-4 shrink-0" aria-hidden />
-        <span>Ask AI</span>
-      </motion.button>
-    </div>
+    <motion.button
+      className="flex items-center gap-1.5 rounded-pill bg-gold px-3 py-1.5 text-xs font-semibold text-black shadow-gold-sm"
+      animate={{ y: [0, -5, 0] }}
+      transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0 }}
+      aria-label="Open AI property search assistant"
+      title="RBM Smart Search — coming in Phase 2"
+    >
+      <Sparkles className="h-3 w-3 shrink-0" aria-hidden />
+      AI assistant
+    </motion.button>
   )
 }
+
+// Keep AiButton as alias so page.tsx imports don't need updating
+export { AiPill as AiButton }

@@ -1,26 +1,25 @@
 'use client'
 
-import { Search } from 'lucide-react'
+import { Search, ChevronDown } from 'lucide-react'
 
+/**
+ * Standalone white search pill — used on light-zone pages (property list, city view).
+ * The hero version is inlined in hero.tsx alongside the AI pill.
+ */
 export function SearchBar() {
   return (
-    <div className="py-5">
-      <div className="relative">
-        <Search
-          className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-muted"
-          aria-hidden
-        />
-        <input
-          type="search"
-          placeholder="Search property across all of Pakistan"
-          className="h-14 w-full rounded-pill border border-hairline bg-surface pl-12 pr-5 text-base text-ink placeholder:text-ink-faint shadow-card transition-shadow hover:shadow-elevated focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-          aria-label="Search properties nationwide"
-          readOnly
-          onClick={() => {
-            /* Phase 2: opens AI search / filter sheet */
-          }}
-        />
-      </div>
+    <div className="flex h-12 items-center overflow-hidden rounded-pill border border-hairline bg-surface shadow-card transition-shadow hover:shadow-elevated">
+      <Search className="ml-4 h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+      <input
+        type="search"
+        placeholder="Search properties"
+        className="flex-1 bg-transparent px-3 text-sm text-ink placeholder:text-ink-faint outline-none focus:ring-0"
+        aria-label="Search properties"
+      />
+      <button className="flex items-center gap-1 border-l border-hairline px-3 text-xs font-medium text-ink-muted whitespace-nowrap transition-colors hover:text-ink">
+        City
+        <ChevronDown className="h-3 w-3" aria-hidden />
+      </button>
     </div>
   )
 }

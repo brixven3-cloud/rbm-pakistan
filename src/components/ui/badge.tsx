@@ -6,16 +6,16 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default:  'bg-surface-soft text-ink-muted ring-hairline',
-        primary:  'bg-primary-soft text-primary-600 ring-primary-200',
-        navy:     'bg-navy-50 text-navy ring-navy-100',
-        success:  'bg-success-soft text-success ring-green-200',
-        warning:  'bg-warning-soft text-warning ring-amber-200',
-        danger:   'bg-danger-soft text-danger ring-red-200',
-        info:     'bg-blue-50 text-blue-700 ring-blue-200',
-        // Gold — ONLY for Featured/Verified. Use sparingly.
-        gold:     'bg-gold-soft text-gold-dark ring-amber-200',
-        outline:  'bg-transparent text-ink-muted ring-hairline',
+        default: 'bg-surface-soft text-ink-muted ring-hairline',
+        // Black badge — for "Verified", important labels on light bg
+        brand:   'bg-black text-white ring-black/10',
+        // Gold — ONLY for "Featured" / "Hot Sale" / "Verified" premium badges
+        gold:    'bg-gold-soft text-gold-dark ring-gold/30',
+        success: 'bg-success-soft text-success ring-green-200',
+        warning: 'bg-warning-soft text-warning ring-amber-200',
+        danger:  'bg-danger-soft text-danger ring-red-200',
+        info:    'bg-blue-50 text-blue-700 ring-blue-200',
+        outline: 'bg-transparent text-ink-muted ring-hairline',
       },
       size: {
         sm: 'px-2 py-0.5 text-2xs',
@@ -27,20 +27,21 @@ const badgeVariants = cva(
   }
 )
 
-interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
+interface BadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>,
+    VariantProps<typeof badgeVariants> {
   dot?: boolean
 }
 
 const dotColors: Record<string, string> = {
-  primary: 'bg-primary',
+  brand:   'bg-white/80',
+  gold:    'bg-gold',
   success: 'bg-success',
   warning: 'bg-warning',
   danger:  'bg-danger',
-  gold:    'bg-gold',
-  navy:    'bg-navy',
+  info:    'bg-blue-500',
   default: 'bg-ink-faint',
   outline: 'bg-ink-faint',
-  info:    'bg-blue-500',
 }
 
 function Badge({ className, variant = 'default', size, dot, children, ...props }: BadgeProps) {
@@ -48,7 +49,7 @@ function Badge({ className, variant = 'default', size, dot, children, ...props }
     <span className={cn(badgeVariants({ variant, size }), className)} {...props}>
       {dot && (
         <span
-          className={cn('h-1.5 w-1.5 rounded-full shrink-0', dotColors[variant ?? 'default'])}
+          className={cn('h-1.5 w-1.5 shrink-0 rounded-full', dotColors[variant ?? 'default'])}
           aria-hidden
         />
       )}

@@ -1,45 +1,65 @@
 import { MarketingNav } from '@/components/marketing/nav'
 import { HeroSection } from '@/components/marketing/hero'
-import { SearchBar } from '@/components/marketing/search-bar'
+import { MakeWebsiteBtn } from '@/components/marketing/make-website-btn'
+import { AdsBanner } from '@/components/marketing/ads-banner'
+import { AllPakistanBtn } from '@/components/marketing/all-pakistan-btn'
+import { BrowseProperties } from '@/components/marketing/browse-properties'
 import { CityGrid } from '@/components/marketing/city-grid'
-import { QuickActions } from '@/components/marketing/quick-actions'
 import { FeaturedListings } from '@/components/marketing/featured-listings'
 import { TrustStrip } from '@/components/marketing/trust-strip'
 import { MarketingFooter } from '@/components/marketing/footer'
 import { BottomNav } from '@/components/marketing/bottom-nav'
-import { AiButton } from '@/components/marketing/ai-button'
 
 export default function HomePage() {
   return (
-    // pb-20 keeps content above the fixed bottom nav on mobile
-    <div className="min-h-screen bg-page pb-20 md:pb-0">
+    // pb-16 clears the fixed bottom nav on mobile
+    <div className="min-h-screen bg-page pb-16 md:pb-0">
+
+      {/* ═══════════ BLACK TOP ZONE ═══════════ */}
+      {/* Sticky nav — must stay outside the overflow-hidden hero div */}
       <MarketingNav />
 
-      <main>
-        {/* 1. Hero — primary-soft bg */}
+      {/* Hero band — black with elliptical curve at the bottom edge */}
+      <div
+        className="bg-black overflow-hidden pb-10"
+        style={{
+          borderBottomLeftRadius: '50% 60px',
+          borderBottomRightRadius: '50% 60px',
+        }}
+      >
         <HeroSection />
+      </div>
 
-        {/* 2-4. Search + city grid + quick actions */}
-        <div className="container-page space-y-8 py-6">
-          <SearchBar />
+      {/* ═══════════ LIGHT CONTENT ZONE ═══════════ */}
+      <main className="bg-page">
+        <div className="container-page space-y-4 pt-5 pb-6">
+          {/* 1. Dealer acquisition CTA */}
+          <MakeWebsiteBtn />
+
+          {/* 2. Ads banner slider (admin-managed in M6) */}
+          <AdsBanner />
+
+          {/* 3. All Pakistan Market entry */}
+          <AllPakistanBtn />
+
+          {/* 4. Browse by city */}
           <CityGrid />
-          <QuickActions />
+
+          {/* 5. Browse by type + quick filters */}
+          <BrowseProperties />
         </div>
 
-        {/* 5. Featured listings — edge-to-edge scroll on mobile */}
+        {/* 6. Featured listings — edge-to-edge horizontal scroll */}
         <FeaturedListings />
 
-        {/* 6. Trust strip */}
+        {/* 7. Trust strip */}
         <TrustStrip />
 
-        {/* 7. Footer (navy) */}
+        {/* 8. Footer (black, Brixven branding) */}
         <MarketingFooter />
       </main>
 
-      {/* Floating AI button — above bottom nav */}
-      <AiButton />
-
-      {/* Mobile bottom navigation */}
+      {/* Fixed mobile bottom nav — 5 items, black bg, gold active */}
       <BottomNav />
     </div>
   )

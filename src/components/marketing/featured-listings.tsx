@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui'
-import { MapPin, BedDouble, Square } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 // Placeholder cards — replaced with real Supabase data in M3
 const PLACEHOLDER = Array.from({ length: 5 }, (_, i) => ({
@@ -14,10 +14,10 @@ const PLACEHOLDER = Array.from({ length: 5 }, (_, i) => ({
 
 export function FeaturedListings() {
   return (
-    <section className="mt-8">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-base font-semibold text-navy">Featured listings</h2>
-        <button className="text-sm font-medium text-primary transition-colors hover:text-primary-dark">
+    <section className="mt-6">
+      <div className="container-page mb-3 flex items-center justify-between">
+        <h2 className="text-base font-semibold text-ink">Featured listings</h2>
+        <button className="text-sm font-medium text-gold transition-colors hover:text-gold-dark">
           View all
         </button>
       </div>
@@ -30,20 +30,20 @@ export function FeaturedListings() {
               key={card.id}
               className="w-56 shrink-0 rounded-card border border-hairline bg-surface shadow-card transition-shadow hover:shadow-elevated sm:w-64"
             >
-              {/* Image placeholder */}
-              <div className="relative h-36 rounded-t-card bg-gradient-to-br from-primary-soft to-primary-100">
-                {/* Badges */}
+              {/* Image placeholder — dark gradient, property images sit on light bg in real cards */}
+              <div className="relative h-36 overflow-hidden rounded-t-card bg-gradient-to-br from-black-soft to-black">
                 <div className="absolute left-2 top-2 flex gap-1.5">
                   {card.featured && <Badge variant="gold" size="sm">⭐ Featured</Badge>}
-                  {card.verified && <Badge variant="primary" size="sm">Verified</Badge>}
+                  {card.verified && <Badge variant="brand" size="sm">Verified</Badge>}
                 </div>
               </div>
 
-              <div className="p-3 space-y-1.5">
-                <div className="text-sm font-semibold text-navy leading-snug line-clamp-2">
+              <div className="space-y-1.5 p-3">
+                <div className="line-clamp-2 text-sm font-semibold leading-snug text-ink">
                   {card.title}
                 </div>
-                <div className="text-base font-bold text-primary">{card.price}</div>
+                {/* Price in gold — key visual highlight */}
+                <div className="text-base font-bold text-gold">{card.price}</div>
                 <div className="flex items-center gap-1 text-xs text-ink-muted">
                   <MapPin className="h-3 w-3 shrink-0" aria-hidden />
                   <span className="truncate">{card.location}</span>

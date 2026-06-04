@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { slideDown } from '@/lib/motion'
 
@@ -15,53 +15,35 @@ export function MarketingNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-hairline bg-surface shadow-sticky">
-      <div className="container-page flex h-14 items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <div className="flex h-8 w-8 items-center justify-center rounded-btn bg-primary text-white shrink-0">
-            <span className="text-sm font-bold leading-none select-none">R</span>
-          </div>
-          <span className="font-semibold text-navy">RBM Pakistan</span>
-        </Link>
-
-        {/* Desktop nav links */}
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Main navigation">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-sm text-ink-muted transition-colors hover:text-primary"
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Desktop auth CTAs */}
-        <div className="hidden items-center gap-3 md:flex">
-          <Link
-            href="/auth/login"
-            className="text-sm font-medium text-ink-muted transition-colors hover:text-primary"
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/auth/signup"
-            className="inline-flex h-9 items-center rounded-btn bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
-          >
-            Get started
-          </Link>
-        </div>
-
-        {/* Mobile hamburger */}
+    <header className="sticky top-0 z-40 bg-black">
+      <div className="container-page flex h-14 items-center">
+        {/* Left: hamburger */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="rounded-btn p-2 text-navy transition-colors hover:bg-surface-soft md:hidden"
+          className="rounded-btn p-2 text-white/60 transition-colors hover:text-white"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+
+        {/* Center: logo + tagline */}
+        <div className="flex flex-1 flex-col items-center">
+          <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+            <div className="flex h-7 w-7 items-center justify-center rounded-btn bg-gold text-black shrink-0">
+              <span className="text-xs font-bold leading-none select-none">R</span>
+            </div>
+            <span className="font-semibold text-white text-sm">RBM Pakistan</span>
+          </Link>
+          <span className="text-2xs text-dark-muted tracking-wider">har property, ek jagah</span>
+        </div>
+
+        {/* Right: search icon */}
+        <button
+          className="rounded-btn p-2 text-white/60 transition-colors hover:text-white"
+          aria-label="Search"
+        >
+          <Search className="h-5 w-5" />
         </button>
       </div>
 
@@ -69,35 +51,35 @@ export function MarketingNav() {
       <AnimatePresence>
         {open && (
           <motion.nav
-            className="border-t border-hairline bg-surface md:hidden"
+            className="border-t border-white/10 bg-black-soft"
             variants={slideDown}
             initial="hidden"
             animate="visible"
             exit="hidden"
             aria-label="Mobile navigation"
           >
-            <div className="container-page space-y-1 py-3">
+            <div className="container-page space-y-0.5 py-3">
               {NAV_LINKS.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="block rounded-btn px-3 py-2 text-sm text-ink transition-colors hover:bg-surface-soft"
+                  className="block rounded-btn px-3 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
                 </Link>
               ))}
-              <div className="mt-3 border-t border-hairline pt-3 space-y-2">
+              <div className="mt-3 border-t border-white/10 pt-3 space-y-2">
                 <Link
                   href="/auth/login"
-                  className="block rounded-btn px-3 py-2 text-sm text-ink transition-colors hover:bg-surface-soft"
+                  className="block rounded-btn px-3 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
                   onClick={() => setOpen(false)}
                 >
                   Sign in
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="block rounded-btn bg-primary px-3 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-primary-dark"
+                  className="block rounded-btn bg-gold px-3 py-2.5 text-center text-sm font-semibold text-black transition-colors hover:bg-gold-dark"
                   onClick={() => setOpen(false)}
                 >
                   Get started free
